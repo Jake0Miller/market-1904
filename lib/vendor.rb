@@ -15,6 +15,6 @@ class Vendor
   end
 
   def sell(item, num)
-    @inventory[item] -= num
+    @inventory[item] = [0, @inventory[item] - num].max
   end
 end

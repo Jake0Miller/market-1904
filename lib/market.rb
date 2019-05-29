@@ -34,13 +34,8 @@ class Market
     return false if total_inventory[item] < num
     @vendors.each do |vendor|
       avail = vendor.inventory[item]
-      if avail > num
-        vendor.sell(item,num)
-        return true
-      else
-        vendor.sell(item,avail)
-        num -= avail
-      end
+      vendor.sell(item,num)
+      avail > num ? (return true) : num -= avail
     end
   end
 end
