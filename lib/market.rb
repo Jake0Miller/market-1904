@@ -29,4 +29,18 @@ class Market
       vendor.inventory.each { |item,num| hash[item] += num }
     end
   end
+
+  def sell(item, num)
+    return false if total_inventory[item] < num
+    @vendors.each do |vendor|
+      avail = vendor.inventory[item]
+      if avail > num
+        vendor.sell(item,num)
+        return true
+      else
+        vendor.sell(item,avail)
+        num -= avail
+      end
+    end
+  end
 end
