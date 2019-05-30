@@ -32,7 +32,7 @@ class Market
 
   def sell(item, num)
     return false if total_inventory[item] < num
-    @vendors.each do |vendor|
+    vendors_that_sell(item).each do |vendor|
       avail = vendor.inventory[item]
       vendor.sell(item,num)
       avail > num ? (return true) : num -= avail
